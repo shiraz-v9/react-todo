@@ -7,6 +7,7 @@
   --hover: #ebebeb;
   --font: #000000;
   --red: #ef233c;
+  --inputColor: rgb(243, 243, 243);
   --shadows: rgb(201, 201, 201);
   /* --background */
 }
@@ -26,7 +27,7 @@ body {
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   /* overflow-y: scroll; */
   position: absolute;
 
@@ -34,25 +35,27 @@ body {
   bottom: 0;
 }
 
-.taskRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .sidebar {
   width: 200px;
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
 }
 .mainTask {
   width: 700px;
 }
 .deets {
   width: 250px;
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
 }
 
 .title {
-  font-size: 24px;
+  font-size: 35px;
+}
+
+.center {
+  display: flex;
+  align-content: center;
 }
 
 .devborders {
@@ -61,30 +64,52 @@ body {
   overflow-y: auto;
   padding-top: 0px !important;
   padding: 10px;
-  border-radius: var(--radius);
-  box-shadow: 0px 0px 5px var(--shadows);
+  /* border-radius: var(--radius); */
+  /* box-shadow: 0px 0px 10px var(--shadows); */
 }
 p,
 h1,
 h2,
 h3,
 button,
-textarea {
+textarea,
+input,
+select,
+option {
   font-family: "Open Sans", sans-serif;
   color: var(--font);
+}
+
+select {
+  width: 100px;
+  border: none;
+  background-color: var(--inputColor);
 }
 
 p,
 button,
 textarea {
   font-size: 14px;
+  margin-bottom: 0px;
 }
 
 input {
   width: 100%;
+  height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
   top: 20px !important;
+  border-radius: var(--radius);
+  background-color: var(--inputColor);
+  border: none;
+  outline: none;
+}
+
+.inputBorder {
+  /* border-style: solid; */
+  border-radius: var(--radius);
+  /* border-color: rgb(243, 243, 243); */
+  background-color: var(--inputColor);
 }
 
 button {
@@ -110,22 +135,37 @@ textarea {
 
 .priorityDot {
   font-size: 10px;
-  margin-top: 4px;
+  /* margin: 4px; */
 }
 
 .eachTask {
-  /* height: 40px; */
-  /* padding-right: 10px;
-  padding-left: 10px; */
-  padding: 10px;
-  margin-bottom: 0px;
+  padding: 5px;
+  /* margin-bottom: 0px; */
 }
-/* #tasks:hover {
-  cursor: pointer;
-  background-color: var(--hover);
-} */
+
+.taskRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .hoverable:hover {
   cursor: pointer;
   background-color: var(--hover);
   border-radius: var(--radius);
+}
+
+.checkBtn {
+  background-color: var(--cardOpacity);
+  border: none;
+}
+
+.checkBtn:hover {
+  background-color: var(--hover) !important;
+}
+
+.svg:hover {
+  background-color: var(--background);
 }

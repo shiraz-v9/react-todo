@@ -5,8 +5,8 @@ export function Sidebar() {
       <h3>smart list</h3>
       <div className="d-flex flex-column">
         <button>inbox</button>
-        <button>next week</button>
         <button>today</button>
+        <button>upcoming 7</button>
         <button>tomorrow</button>
       </div>
 
