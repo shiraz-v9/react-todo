@@ -3,23 +3,30 @@ import { createSlice } from "@reduxjs/toolkit";
 export const taskSlice = createSlice({
   name: "reduxTask",
   initialState: {
-    count: 0,
     list: [],
+    smartlist: "inbox",
   },
   reducers: {
-    inc: (state) => {
-      state.count += 1;
-    },
-    decrement: (state) => {
-      state.count -= 1;
-    },
     addTask: (state, action) => {
       state.list = action.payload;
+    },
+    setInbox: (state) => {
+      state.smartlist = "inbox";
+    },
+    setToday: (state) => {
+      state.smartlist = "today";
+    },
+    setTomorrow: (state) => {
+      state.smartlist = "tomorrow";
+    },
+    setNext7: (state) => {
+      state.smartlist = "next 7";
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { inc, decrement, addTask } = taskSlice.actions;
+export const { addTask, setInbox, setToday, setTomorrow, setNext7 } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;

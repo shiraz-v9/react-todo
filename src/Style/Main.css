@@ -1,14 +1,14 @@
 :root {
-  --background: rgb(243, 242, 239);
-  --cards: rgb(255, 255, 255);
-  --cardOpacity: rgba(255, 255, 255, 0.9);
+  --background: RGB(45, 45, 45);
+  --cards: RGB(57, 57, 57);
+  --cardOpacity: rgba(57, 57, 57, 0.9);
   --button: #3e90cc;
   --btncolor: #ebf2fa;
   --radius: 10px;
-  --hover: #ebebeb;
-  --font: #000000;
+  --hover: #575757;
+  --font: #dbe4e3;
   --red: #ef233c;
-  --inputColor: rgb(243, 243, 243);
+  --inputColor: RGB(45, 45, 45);
   --shadows: rgb(201, 201, 201);
 }
 
@@ -23,36 +23,28 @@ body {
 }
 
 .container {
-  /* margin-top: 20px; */
-  /* margin-bottom: 20px; */
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* overflow-y: scroll; */
   position: absolute;
-
   top: 0;
   bottom: 0;
 }
 
+.iconbar {
+  width: 50px;
+  background-color: var(--button);
+}
+
 .sidebar {
-  width: 200px;
-  border-top-left-radius: var(--radius);
-  border-bottom-left-radius: var(--radius);
+  width: 300px;
+  /* border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius); */
 }
 .mainTask {
-  width: 700px;
+  width: 800px;
   border-top-right-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
-}
-/* .deets {
-  width: 250px;
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-} */
-
-.title {
-  font-size: 35px;
 }
 
 .center {
@@ -76,14 +68,19 @@ textarea,
 input,
 select,
 option {
-  font-family: "SanFrancisco", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--font);
 }
 
+/* 
+font-family: 'JetBrains Mono', monospace;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Raleway', sans-serif; 
+*/
+
 button {
   color: var(--btncolor);
-  /* outline: none; */
-  /* border-style: none; */
   border-radius: 5px;
   background-color: var(--button);
 }
@@ -97,7 +94,6 @@ select {
 p,
 button,
 textarea {
-  /* font-size: 14px; */
   margin-bottom: 0px;
 }
 
@@ -114,27 +110,15 @@ input {
 }
 
 .inputBorder {
-  /* border-style: solid; */
   border-radius: var(--radius);
-  /* border-color: rgb(243, 243, 243); */
   background-color: var(--inputColor);
-}
-
-.cardStyle {
-  width: 100%;
-  outline: none;
-  border-style: none;
-  background-color: var(--background);
-  border-radius: var(--radius);
 }
 
 .sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-
   background-color: var(--cards);
-  /* opacity: 0.5; */
   background-color: var(--cardOpacity);
 }
 
@@ -156,24 +140,36 @@ input {
   border-radius: var(--radius);
 }
 
-.checkBtn {
-  background-color: var(--cardOpacity);
-  border: none;
-}
-
 .checkBtn:hover {
-  background-color: var(--hover) !important;
+  background-color: var(--button);
+  border-radius: 5px;
 }
 
-.svg:hover {
-  background-color: #004a8f69;
-}
-
-.hiddenInput {
-  border: none;
+.modinput,
+.modtxt {
+  /* border: none; */
   outline: none;
   border-radius: 0;
-  background-color: var(--cards);
-  font-size: 28px;
-  /* cursor: pointer; */
+  background-color: #2c2c2c77;
+  font-size: 20px;
+  width: 100%;
+}
+
+.theModal {
+  background: var(--cards);
+  /* border-radius: 20px; */
+}
+
+.userlogo {
+  border-radius: 10px;
+}
+.dueTask {
+  /* background-color: red;
+ 
+  display: inline-block;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center; */
+  /* font-size: 22px; */
 }

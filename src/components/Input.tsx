@@ -4,9 +4,9 @@ export function Input(props: any) {
   const [input, setInput] = useState<string>("");
   const [fired, setfired] = useState<number>(0);
   const [select, setSelect] = useState<string>(priority[fired]);
-  // const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
-  //   setSelect(event.target.value);
-  // };
+  const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelect(event.target.value);
+  };
 
   const handleSubmission = (event: any) => {
     event.preventDefault();
@@ -37,7 +37,7 @@ export function Input(props: any) {
               className="ms-2"
               type="text"
               value={input}
-              onKeyDown={arrowzino}
+              // onKeyDown={arrowzino}
               onChange={(event) => {
                 {
                   setInput(event.target.value);
@@ -45,15 +45,15 @@ export function Input(props: any) {
               }}
               placeholder="add a task..."
             />
-            {/* <select name="select" onChange={handleSelect}>
-              <option value="none">{select}</option>
+            <select name="select" onChange={handleSelect}>
+              <option value="none">none</option>
               <option value="low">low</option>
               <option value="medium">medium</option>
               <option value="high">high</option>
-            </select> */}
-            <p className="mx-2">{select}</p>
+            </select>
+            {/* <p className="mx-2">{select}</p> */}
 
-            <button className="me-2" type="submit">
+            <button className="mx-2" type="submit">
               add
             </button>
           </div>

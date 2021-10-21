@@ -12,13 +12,13 @@ export const counterSlice = createSlice({
     decrement: (state) => {
       state.inbox -= 1;
     },
-    length: (state, action) => {
+    lungo: (state, action) => {
       state.inbox = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, length } = counterSlice.actions;
+export const { increment, decrement, lungo } = counterSlice.actions;
 
 export default counterSlice.reducer;

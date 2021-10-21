@@ -37,7 +37,7 @@ export function TaskModal({ task, obj, finishTask, idProp, id }: props) {
     ];
 
     console.log(body, taskname);
-    dispatch(addTask([list, updated]));
+    dispatch(addTask([...list, updated]));
   };
 
   var m = 3;
@@ -47,14 +47,14 @@ export function TaskModal({ task, obj, finishTask, idProp, id }: props) {
       <div className="mt-2 taskRow" onClick={handleShow}>
         <div className="w-100 mx-2 taskRow">
           <div className="d-flex flex-nowrap align-items-start">
-            <button
-              className="checkBtn"
+            <div
+              className="checkBtn me-2"
               onClick={() => {
                 finishTask(task.task, task.id);
               }}
             >
-              <Checkbox col="#004A8F" />
-            </button>
+              <Checkbox col="#3e90cc" />
+            </div>
 
             <p>{task.task}</p>
           </div>
@@ -66,34 +66,38 @@ export function TaskModal({ task, obj, finishTask, idProp, id }: props) {
       </div>
 
       <Modal show={show} onHide={handleClose} backdrop="true" keyboard={false}>
-        <div className={`m-${m} d-flex justify-content-between`}>
-          <input
-            className="hiddenInput"
-            type="text"
-            value={taskname}
-            onChange={(e) => settaskname(e.target.value)}
-          />
-          {/* <h3>{task.task}</h3> */}
-          <Priority type={task.priority} />
-        </div>
-        <div className={`m-${m} `}>
-          <textarea
-            rows={4}
-            className="cardStyle"
-            onChange={(e) => {
-              {
-                setbody(e.target.value);
-              }
-            }}
+        <div className="theModal">
+          <div
+            className={`m-${m} d-flex justify-content-between align-items-center`}
           >
-            {task.body?.text}
-          </textarea>
-        </div>
-        <div className={`m-${m} d-flex flex-row justify-content-end`}>
-          <button onClick={handleClose}>Discard</button>
-          <button className="ms-1" onClick={handleUpdate}>
-            Save
-          </button>
+            <input
+              className="modinput"
+              type="text"
+              value={taskname}
+              onChange={(e) => settaskname(e.target.value)}
+            />
+            <Priority type={task.priority} />
+          </div>
+          <div className={`m-${m} `}>
+            <textarea
+              rows={4}
+              className="modtxt"
+              placeholder="more details here"
+              onChange={(e) => {
+                {
+                  setbody(e.target.value);
+                }
+              }}
+            >
+              {task.body?.text}
+            </textarea>
+          </div>
+          <div className={`m-${m} d-flex flex-row justify-content-end`}>
+            <button onClick={handleClose}>Discard</button>
+            <button className="ms-1" onClick={handleUpdate}>
+              Save
+            </button>
+          </div>
         </div>
       </Modal>
     </>
