@@ -2,10 +2,10 @@ export function Priority({ type }: any) {
   var colorfulDots = "";
   if (type === "low") {
     //do something
-    colorfulDots = "🔵";
+    colorfulDots = "🟢";
   } else if (type === "medium") {
     //do something
-    colorfulDots = "🟡";
+    colorfulDots = "🔵";
   } else if (type === "high") {
     //do something
     colorfulDots = "🔴";

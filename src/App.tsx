@@ -1,6 +1,6 @@
 import { Homepage } from "./components/Homepage";
 import { Sidebar } from "./components/Sidebar";
-import { Taskdeets } from "./components/Taskdeets";
+// import { Taskdeets } from "./components/Taskdeets";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <div className="container">
         <Sidebar />
         <Homepage />
-        <Taskdeets />
+        {/* <Taskdeets content={(value: idProp) => value} /> */}
       </div>
     </div>
   );
