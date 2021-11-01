@@ -5,7 +5,7 @@ import { addTask } from "../Redux/task";
 import { RootState } from "../Redux/store";
 import { Input } from "./Input";
 import { ITask } from "./interfaces";
-import { TaskModal } from "./taskBody";
+import { TaskBody } from "./taskBody";
 import BadgeCount from "./badgeCount";
 
 export function Homepage() {
@@ -85,7 +85,7 @@ export function Homepage() {
     const mylist = list.map((tasks: ITask, index: number) => (
       <div className="hoverable" key={index}>
         <div className="w-100">
-          <TaskModal
+          <TaskBody
             key={index}
             task={tasks}
             finishTask={finishTask}
@@ -114,7 +114,7 @@ export function Homepage() {
         />
 
         <button
-          className="mt-2"
+          className="mt-2 btntt"
           onClick={() => {
             console.log(list);
             console.log(inbox);

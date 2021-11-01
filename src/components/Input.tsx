@@ -53,7 +53,7 @@ export function Input(props: any) {
             </select>
             {/* <p className="mx-2">{select}</p> */}
 
-            <button className="mx-2" type="submit">
+            <button className="mx-2 btntt" type="submit">
               add
             </button>
           </div>

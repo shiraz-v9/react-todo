@@ -4,7 +4,7 @@ import App from "./App.tsx";
 import { store } from "./Redux/store";
 import { Provider } from "react-redux";
 import "./Style/Main.css";
-import "./Style/font.css";
+import "./Style/calendar.css";
 
 ReactDOM.render(
   <React.StrictMode>

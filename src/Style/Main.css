@@ -1,5 +1,6 @@
 :root {
   --background: RGB(45, 45, 45);
+  /* --background: white; */
   --cards: RGB(57, 57, 57);
   --cardOpacity: rgba(57, 57, 57, 0.9);
   --button: #3e90cc;
@@ -17,7 +18,7 @@ body {
   overflow-y: hidden;
 }
 
-.App {
+#root {
   display: flex;
   justify-content: center;
 }
@@ -25,26 +26,29 @@ body {
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: stretch;
+  /* align-items: stretch; */
   position: absolute;
   top: 0;
   bottom: 0;
 }
 
 .iconbar {
+  display: flex;
+  justify-content: flex-start;
   width: 50px;
   background-color: var(--button);
 }
 
 .sidebar {
-  width: 300px;
-  /* border-top-left-radius: var(--radius);
-  border-bottom-left-radius: var(--radius); */
+  width: 200px;
 }
 .mainTask {
-  width: 800px;
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
+  width: 700px;
+}
+
+.deets {
+  width: 300px;
 }
 
 .center {
@@ -57,7 +61,7 @@ body {
   background-color: var(--cards);
   overflow-y: auto;
   padding-top: 0px !important;
-  padding: 10px;
+  padding: 10px !important;
 }
 p,
 h1,
@@ -72,6 +76,25 @@ option {
   color: var(--font);
 }
 
+.btntt {
+  /* color: var(--btncolor); */
+  font-weight: bold;
+  border-radius: 5px;
+
+  background-color: var(--cards);
+  border: none;
+}
+
+.btntt:hover {
+  cursor: default;
+  background-color: var(--button);
+}
+
+.btnttActive {
+  cursor: default;
+  background-color: var(--button);
+}
+
 /* 
 font-family: 'JetBrains Mono', monospace;
 font-family: 'Montserrat', sans-serif;
@@ -79,11 +102,10 @@ font-family: 'Open Sans', sans-serif;
 font-family: 'Raleway', sans-serif; 
 */
 
-button {
-  color: var(--btncolor);
-  border-radius: 5px;
-  background-color: var(--button);
-}
+/* button {
+  
+  cursor: default;
+} */
 
 select {
   width: 100px;
@@ -95,6 +117,10 @@ p,
 button,
 textarea {
   margin-bottom: 0px;
+}
+
+textarea {
+  width: auto;
 }
 
 input {
@@ -135,7 +161,7 @@ input {
 }
 
 .hoverable:hover {
-  cursor: pointer;
+  /* cursor: pointer; */
   background-color: var(--hover);
   border-radius: var(--radius);
 }
@@ -162,14 +188,4 @@ input {
 
 .userlogo {
   border-radius: 10px;
-}
-.dueTask {
-  /* background-color: red;
- 
-  display: inline-block;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  text-align: center; */
-  /* font-size: 22px; */
 }

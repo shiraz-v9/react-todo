@@ -33,7 +33,7 @@ export function Sidebar() {
       <h3 className="mt-2">smart list</h3>
       <div className="d-flex flex-column">
         <button
-          className="mb-1"
+          className="mb-1 btntt btnttActive"
           onClick={() => {
             dispatch(setInbox());
           }}
@@ -41,7 +41,7 @@ export function Sidebar() {
           inbox
         </button>
         <button
-          className="mb-1"
+          className="mb-1 btntt"
           onClick={() => {
             dispatch(setToday());
           }}
@@ -49,7 +49,7 @@ export function Sidebar() {
           today
         </button>
         <button
-          className="mb-1"
+          className="mb-1 btntt"
           onClick={() => {
             dispatch(setTomorrow());
           }}
@@ -57,7 +57,7 @@ export function Sidebar() {
           tomorrow
         </button>
         <button
-          className="mb-1"
+          className="mb-1 btntt"
           onClick={() => {
             dispatch(setNext7());
           }}

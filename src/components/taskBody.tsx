@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../Redux/store";
-import { addTask } from "../Redux/task";
+import { addTask, setID } from "../Redux/task";
 import { Checkbox } from "./checkbox";
 import { ITask } from "./interfaces";
 import { Priority } from "./priority";
@@ -16,15 +16,20 @@ interface props {
   idProp(id: number): void;
 }
 
-export function TaskModal({ task, obj, finishTask, idProp, id }: props) {
+export function TaskBody({ task, obj, finishTask, idProp, id }: props) {
   const [show, setShow] = useState(false);
   const [body, setbody] = useState<string>("");
   const [taskname, settaskname] = useState<string>(task.task);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { list } = useSelector((state: RootState) => state.reduxTask);
+  const { list, listID } = useSelector((state: RootState) => state.reduxTask);
   const dispatch = useDispatch();
+
+  const handleDeets = () => {
+    dispatch(setID(id));
+    console.log("list ID redux ", id, taskname);
+  };
   const handleUpdate = () => {
     var updated: ITask[] = [
       {
@@ -44,7 +49,7 @@ export function TaskModal({ task, obj, finishTask, idProp, id }: props) {
 
   return (
     <>
-      <div className="mt-2 taskRow" onClick={handleShow}>
+      <div className="mt-2 taskRow" onClick={handleDeets}>
         <div className="w-100 mx-2 taskRow">
           <div className="d-flex flex-nowrap align-items-start">
             <div
@@ -65,7 +70,7 @@ export function TaskModal({ task, obj, finishTask, idProp, id }: props) {
         </div>
       </div>
 
-      <Modal show={show} onHide={handleClose} backdrop="true" keyboard={false}>
+      {/* <Modal show={show} onHide={handleClose} backdrop="true" keyboard={false}>
         <div className="theModal">
           <div
             className={`m-${m} d-flex justify-content-between align-items-center`}
@@ -99,7 +104,7 @@ export function TaskModal({ task, obj, finishTask, idProp, id }: props) {
             </button>
           </div>
         </div>
-      </Modal>
+      </Modal> */}
     </>
   );
 }

@@ -1,0 +1,38 @@
+:root {
+  --background: RGB(45, 45, 45);
+  /* --background: white; */
+  --cards: RGB(57, 57, 57);
+  --cardOpacity: rgba(57, 57, 57, 0.9);
+  --button: #3e90cc;
+  --btncolor: #ebf2fa;
+  --radius: 10px;
+  --hover: #575757;
+  --font: #dbe4e3;
+  --red: #ef233c;
+  --inputColor: RGB(45, 45, 45);
+  --shadows: rgb(201, 201, 201);
+}
+
+.rbc-month-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rbc-date-cell {
+  display: flex;
+  flex-flow: row wrap !important;
+  gap: 10px 10px !important;
+  align-items: center;
+}
+
+span,
+a {
+  font-family: "Montserrat", sans-serif;
+  color: var(--font);
+}
+
+button {
+  color: var(--btncolor);
+  background-color: var(--button);
+}
