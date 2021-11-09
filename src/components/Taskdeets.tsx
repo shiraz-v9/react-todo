@@ -4,18 +4,22 @@ import { RootState } from "../Redux/store";
 import { ITask } from "./interfaces";
 
 export function Taskdeets() {
-  const [task, settask] = useState<any>("");
-  const [body, setBody] = useState<any>("");
+  const [task, setTask] = useState<string>();
+  const [body, setBody] = useState<string>();
   const { listID, list } = useSelector((state: RootState) => state.reduxTask);
   const dispatch = useDispatch();
 
   useEffect(() => {
     //
-    if (list !== undefined && list !== [] && list !== null) {
+    if (list != undefined && list != null) {
       console.log(listID);
       console.log(list[listID]);
-      // settask(list[listID].task);
-      // setBody(list[listID].body?.text);
+      if (list[listID]?.task !== null && list[listID]?.task !== undefined) {
+        setTask(list[listID]?.task);
+        setBody(list[listID]?.body?.text);
+      } else {
+        setTask("click on a task");
+      }
     }
   }, [listID]);
 
@@ -26,7 +30,7 @@ export function Taskdeets() {
 
   return (
     <div className="devborders deets">
-      <h1 className="sticky title">{task}</h1>
+      <h3 className="sticky title">{task}</h3>
       <p>add description to task</p>
       <textarea
         className="modtxt"

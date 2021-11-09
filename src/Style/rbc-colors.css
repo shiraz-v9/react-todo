@@ -1,0 +1,67 @@
+:root {
+  --button: #3e90cc;
+  --btncolor: #ebf2fa;
+  --accent: #3e90cc;
+  --Cfont: #ffffff;
+  --today: rgba(62, 144, 204, 0.4);
+  --event: rgb(121, 190, 255);
+  --eventHover: rgba(121, 190, 255, 0.9);
+  --offRange: rgba(90, 90, 90, 0.4);
+  --offRangeTxt: #c0c0c0;
+}
+
+span,
+a {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+th,
+td {
+  font-family: "Montserrat", sans-serif !important;
+  color: var(--Cfont) !important;
+}
+
+.rbc-date-cell > a {
+  color: var(--Cfont);
+}
+
+a.rbc-show-more {
+  color: var(--Cfont);
+  text-align: center;
+  border-radius: 5px;
+}
+
+span.rbc-toolbar-label {
+  font-weight: bold;
+}
+
+span {
+  color: var(--Cfont) !important;
+}
+
+.rbc-off-range > a {
+  color: var(--offRangeTxt) !important;
+}
+
+.rbc-off-range-bg {
+  background: var(--offRange);
+}
+
+.rbc-today {
+  background-color: var(--today);
+}
+
+.rbc-event.rbc-selected,
+.rbc-day-slot .rbc-selected.rbc-background-event {
+  background-color: var(--event);
+  /* outline: none; */
+}
+
+.rbc-event:hover {
+  background-color: var(--eventHover);
+}
+
+button {
+  color: var(--btncolor) !important;
+  background-color: var(--button) !important;
+}

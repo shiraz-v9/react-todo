@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setInbox, setNext7, setToday, setTomorrow } from "../Redux/task";
+import { setInbox, upcoming, setToday, setTomorrow } from "../Redux/task";
 
 // import { pop } from "./media/pop.mp3";
 const pop = require("./media/pop.mp3");
@@ -38,7 +38,7 @@ export function Sidebar() {
             dispatch(setInbox());
           }}
         >
-          inbox
+          Inbox
         </button>
         <button
           className="mb-1 btntt"
@@ -46,7 +46,7 @@ export function Sidebar() {
             dispatch(setToday());
           }}
         >
-          today
+          Today
         </button>
         <button
           className="mb-1 btntt"
@@ -54,15 +54,15 @@ export function Sidebar() {
             dispatch(setTomorrow());
           }}
         >
-          tomorrow
+          Tomorrow
         </button>
         <button
           className="mb-1 btntt"
           onClick={() => {
-            dispatch(setNext7());
+            dispatch(upcoming());
           }}
         >
-          upcoming 7
+          Upcoming
         </button>
       </div>
     </div>

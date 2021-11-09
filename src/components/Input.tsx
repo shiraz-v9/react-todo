@@ -1,9 +1,11 @@
+import { setPriority } from "os";
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 export function Input(props: any) {
   var priority = ["none", "low", "medium", "high"];
   const [input, setInput] = useState<string>("");
   const [fired, setfired] = useState<number>(0);
   const [select, setSelect] = useState<string>(priority[fired]);
+  const [date, setDate] = useState<string>("");
   const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelect(event.target.value);
   };
@@ -12,6 +14,9 @@ export function Input(props: any) {
     event.preventDefault();
     props.sub(input);
     props.select(select);
+    props.date(date);
+    setInput("");
+    setDate("");
     setInput("");
   };
 
@@ -45,6 +50,14 @@ export function Input(props: any) {
               }}
               placeholder="add a task..."
             />
+            <input
+              type="date"
+              className="date-picker"
+              value={date}
+              onChange={(event) => setDate(event.target.value)}
+              name="date-picker"
+            />
+
             <select name="select" onChange={handleSelect}>
               <option value="none">none</option>
               <option value="low">low</option>

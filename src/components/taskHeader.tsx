@@ -1,32 +1,41 @@
 import { useState, useEffect, SetStateAction } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { lungo } from "../Redux/counter";
-import { addTask } from "../Redux/task";
+import { addTask, taskDeadline } from "../Redux/task";
 import { RootState } from "../Redux/store";
 import { Input } from "./Input";
 import { ITask } from "./interfaces";
 import { TaskBody } from "./taskBody";
 import BadgeCount from "./badgeCount";
+import moment from "moment";
 
-export function Homepage() {
+export function TaskHead() {
   // var parsedLS:any = JSON.parse(localStorage.getItem("listArray"));
   const [todoList, setTodoList] = useState<ITask[]>([]);
   const [task, setTask] = useState<string>("");
-  const [deadline, setDealine] = useState<string>("inbox");
+  const [deadline, setDealine] = useState<string>("");
   const [priority, setPriority] = useState<string>("");
+  const [date, setDate] = useState<string>("");
+  const [testtt, settesttt] = useState();
 
   const { inbox } = useSelector((state: RootState) => state.counter);
-  const { list, smartlist } = useSelector(
+  const { list, smartlist, deadlines } = useSelector(
     (state: RootState) => state.reduxTask
   );
   const dispatch = useDispatch();
 
   useEffect((): void => {
-    // let parsedLS: any = localStorage.getItem("listArray");
     if (task !== "") {
       setTodoList([
         ...todoList,
-        { task: task, id: CreateID(), deadline: deadline, priority: priority },
+        {
+          task: task,
+          id: CreateID(),
+          created: moment().format("dddd, MMMM Do YYYY"),
+          createdTime: moment().format("h:mm:ss a"),
+          deadline: moment(date).format("DD/MM/YYYY"),
+          priority: priority,
+        },
       ]);
 
       //Redux global state
@@ -36,19 +45,35 @@ export function Homepage() {
           {
             task: task,
             id: CreateID(),
-            deadline: deadline,
+            created: moment().format("dddd, MMMM Do YYYY"),
+            createdTime: moment().format("h:mm:ss a"),
+            deadline: moment(date).format("DD/MM/YYYY"),
             priority: priority,
           },
         ])
       );
-
+      // if (date !== "") {
+      //   dispatch(taskDeadline(todoList));
+      // }
       setTask("");
+      // setDate("");
     }
   }, [task]);
 
   useEffect(() => {
-    // localStorage.setItem("listArray", JSON.stringify(list));
     dispatch(lungo(list.length));
+
+    dispatch(
+      taskDeadline(
+        todoList.filter((task) => {
+          return (
+            task.deadline !== undefined &&
+            task.deadline !== "Invalid date" &&
+            task.deadline !== ""
+          );
+        })
+      )
+    );
   }, [list]);
 
   const CreateID = (): number => {
@@ -111,14 +136,15 @@ export function Homepage() {
         <Input
           sub={(value: any) => setTask(value)}
           select={(value: any) => setPriority(value)}
+          date={(value: any) => setDate(value)}
         />
 
         <button
           className="mt-2 btntt"
           onClick={() => {
-            console.log(list);
-            console.log(inbox);
-            // console.log(parsedLS);
+            console.log("LIST -", list);
+            console.log("INBOX -", inbox);
+            console.log("EVENTS -", deadlines);
           }}
         >
           REDUX LOG

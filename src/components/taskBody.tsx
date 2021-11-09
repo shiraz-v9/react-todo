@@ -30,20 +30,20 @@ export function TaskBody({ task, obj, finishTask, idProp, id }: props) {
     dispatch(setID(id));
     console.log("list ID redux ", id, taskname);
   };
-  const handleUpdate = () => {
-    var updated: ITask[] = [
-      {
-        task: taskname,
-        id: task.id,
-        deadline: task.deadline,
-        priority: task.priority,
-        body: { text: body },
-      },
-    ];
+  // const handleUpdate = () => {
+  //   var updated: ITask[] = [
+  //     {
+  //       task: taskname,
+  //       id: task.id,
+  //       deadline: task.deadline,
+  //       priority: task.priority,
+  //       body: { text: body },
+  //     },
+  //   ];
 
-    console.log(body, taskname);
-    dispatch(addTask([...list, updated]));
-  };
+  //   console.log(body, taskname);
+  //   dispatch(addTask([...list, updated]));
+  // };
 
   var m = 3;
 
@@ -80,8 +80,8 @@ export function TaskBody({ task, obj, finishTask, idProp, id }: props) {
               type="text"
               value={taskname}
               onChange={(e) => settaskname(e.target.value)}
-            />
-            <Priority type={task.priority} />
+              />
+              <Priority type={task.priority} />
           </div>
           <div className={`m-${m} `}>
             <textarea
