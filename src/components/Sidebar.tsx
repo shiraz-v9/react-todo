@@ -16,6 +16,9 @@ export function Sidebar() {
           alt="userlogo"
           height="40"
           width="40"
+          onClick={() => {
+            window.location.reload();
+          }}
         />
 
         <svg

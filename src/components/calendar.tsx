@@ -5,35 +5,45 @@ import { RootState } from "../Redux/store";
 import { useSelector } from "react-redux";
 import { RBC_Event } from "../components/interfaces";
 
-const MyCalendar = () => {
+function MyCalendar() {
   const { deadlines } = useSelector((state: RootState) => state.reduxTask);
   const locale = momentLocalizer(moment);
   var events: RBC_Event[] = [];
-  if (deadlines) {
+
+  if (deadlines !== []) {
     deadlines.forEach((item, index, arr) => {
+      var Day = parseInt(moment(arr[index].deadline).format("DD"));
+      var Year = parseInt(moment(arr[index].deadline).format("YYYY"));
+      var Month = parseInt(moment(arr[index].deadline).format("MM"));
+      console.log("DEADLINES RUNNING ", Day);
       events = [
+        ...events,
         {
-          title: deadlines[index].task,
+          title: arr[index].task,
           allDay: true,
-          start: moment(deadlines[index].deadline).format("YYYY, MM DD "),
-          end: moment(deadlines[index].deadline).format("YYYY, MM DD "),
+          start: new Date(Year, Month - 1, Day),
+          end: new Date(Year, Month - 1, Day),
         },
       ];
     });
-  } else {
-    events = [];
   }
+
   return (
     <Calendar
-      view="month"
+      // view="month"
       localizer={locale}
       events={events}
       startAccessor="start"
       endAccessor="end"
-      onSelectEvent={() => console.log("hello world")}
-      style={{ height: "auto", width: "1200px", marginLeft: "10px" }}
+      // onSelectEvent={() => console.log("hello world")}
+      style={{
+        height: "auto",
+        width: "1200px",
+        marginLeft: "10px",
+        marginTop: "10px",
+      }}
     />
   );
-};
+}
 
 export default MyCalendar;

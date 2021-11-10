@@ -30,11 +30,11 @@ export function Taskdeets() {
 
   return (
     <div className="devborders deets">
-      <h3 className="sticky title">{task}</h3>
-      <p>add description to task</p>
+      <h3 className="sticky title mt-2">{task}</h3>
+      <span>{list[listID] ? list[listID].created : ""}</span>
       <textarea
         className="modtxt"
-        placeholder="details..."
+        placeholder="add description to task"
         value={body}
         onChange={handleDetails}
       ></textarea>

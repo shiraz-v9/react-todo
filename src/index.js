@@ -7,10 +7,10 @@ import "./Style/Main.css";
 import "./Style/rbc-colors.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  // </React.StrictMode>,
   document.getElementById("root")
 );

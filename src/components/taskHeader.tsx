@@ -10,7 +10,6 @@ import BadgeCount from "./badgeCount";
 import moment from "moment";
 
 export function TaskHead() {
-  // var parsedLS:any = JSON.parse(localStorage.getItem("listArray"));
   const [todoList, setTodoList] = useState<ITask[]>([]);
   const [task, setTask] = useState<string>("");
   const [deadline, setDealine] = useState<string>("");
@@ -41,22 +40,20 @@ export function TaskHead() {
       //Redux global state
       dispatch(
         addTask([
-          ...todoList,
+          ...list,
           {
             task: task,
             id: CreateID(),
             created: moment().format("dddd, MMMM Do YYYY"),
             createdTime: moment().format("h:mm:ss a"),
-            deadline: moment(date).format("DD/MM/YYYY"),
+            deadline: date,
             priority: priority,
           },
         ])
       );
-      // if (date !== "") {
-      //   dispatch(taskDeadline(todoList));
-      // }
+
       setTask("");
-      // setDate("");
+      setDate("");
     }
   }, [task]);
 
@@ -65,7 +62,7 @@ export function TaskHead() {
 
     dispatch(
       taskDeadline(
-        todoList.filter((task) => {
+        list.filter((task) => {
           return (
             task.deadline !== undefined &&
             task.deadline !== "Invalid date" &&
@@ -77,19 +74,21 @@ export function TaskHead() {
   }, [list]);
 
   const CreateID = (): number => {
-    var count = todoList.length + 1;
+    var count = list.length + 1;
+    // if (list.keys() === count ) {
+    // }
     return count;
   };
 
   const finishTask = (taskNameToDelete: string, id: number): void => {
-    setTodoList(
-      todoList.filter((task) => {
-        return task.id != id;
-      })
-    );
+    // setTodoList(
+    //   todoList.filter((task) => {
+    //     return task.id != id;
+    //   })
+    // );
     dispatch(
       addTask(
-        todoList.filter((task) => {
+        list.filter((task) => {
           return task.id != id;
         })
       )
@@ -132,7 +131,6 @@ export function TaskHead() {
           <h1 className="me-3">{smartlist}</h1>
           <BadgeCount count={inbox} />
         </div>
-
         <Input
           sub={(value: any) => setTask(value)}
           select={(value: any) => setPriority(value)}

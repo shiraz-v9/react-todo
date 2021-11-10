@@ -4,7 +4,7 @@ export interface ITask {
   created: string;
   createdTime: string;
   body?: ITaskBody;
-  deadline?: any;
+  deadline?: string;
   duration?: number;
   priority: string;
 }
@@ -16,8 +16,8 @@ export interface ITaskBody {
 
 export interface RBC_Event {
   title: string;
-  start: any;
-  end: any;
+  start: Date;
+  end: Date;
   allDay?: boolean;
   resource?: any;
 }
