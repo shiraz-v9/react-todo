@@ -8,7 +8,7 @@ export const taskSlice = createSlice({
     smartlist: "inbox",
     deadlines: [] as IDeadline[],
     events: [],
-    listID: -1,
+    listID: undefined,
   },
   reducers: {
     addTask: (state, action) => {

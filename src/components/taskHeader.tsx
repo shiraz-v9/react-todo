@@ -1,4 +1,4 @@
-import { useState, useEffect, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { lungo } from "../Redux/counter";
 import { addTask, taskDeadline } from "../Redux/task";
@@ -6,46 +6,34 @@ import { RootState } from "../Redux/store";
 import { Input } from "./Input";
 import { ITask } from "./interfaces";
 import { TaskBody } from "./taskBody";
-import BadgeCount from "./badgeCount";
-import moment from "moment";
+import { nanoid } from "nanoid";
+import { format } from "date-fns";
 
 export function TaskHead() {
-  const [todoList, setTodoList] = useState<ITask[]>([]);
+  // const [todoList, setTodoList] = useState<ITask[]>([]);
   const [task, setTask] = useState<string>("");
-  const [deadline, setDealine] = useState<string>("");
   const [priority, setPriority] = useState<string>("");
-  const [date, setDate] = useState<string>("");
-  const [testtt, settesttt] = useState();
+  const [date, setDate] = useState<Date | string>();
 
   const { inbox } = useSelector((state: RootState) => state.counter);
-  const { list, smartlist, deadlines } = useSelector(
+  const { list, deadlines } = useSelector(
     (state: RootState) => state.reduxTask
   );
   const dispatch = useDispatch();
 
   useEffect((): void => {
     if (task !== "") {
-      setTodoList([
-        ...todoList,
-        {
-          task: task,
-          id: CreateID(),
-          created: moment().format("dddd, MMMM Do YYYY"),
-          createdTime: moment().format("h:mm:ss a"),
-          deadline: moment(date).format("DD/MM/YYYY"),
-          priority: priority,
-        },
-      ]);
-
       //Redux global state
       dispatch(
         addTask([
           ...list,
           {
             task: task,
-            id: CreateID(),
-            created: moment().format("dddd, MMMM Do YYYY"),
-            createdTime: moment().format("h:mm:ss a"),
+            id: nanoid(),
+            created: {
+              Day: format(new Date(), "dd/LL/yyyy"),
+              Time: format(new Date(), "hh:mm aaa"),
+            },
             deadline: date,
             priority: priority,
           },
@@ -53,7 +41,7 @@ export function TaskHead() {
       );
 
       setTask("");
-      setDate("");
+      // setDate(new Date());
     }
   }, [task]);
 
@@ -63,40 +51,24 @@ export function TaskHead() {
     dispatch(
       taskDeadline(
         list.filter((task) => {
-          return (
-            task.deadline !== undefined &&
-            task.deadline !== "Invalid date" &&
-            task.deadline !== ""
-          );
+          return task.deadline !== undefined && task.deadline !== null;
         })
       )
     );
   }, [list]);
 
-  const CreateID = (): number => {
-    var count = list.length + 1;
-    // if (list.keys() === count ) {
-    // }
-    return count;
-  };
-
-  const finishTask = (taskNameToDelete: string, id: number): void => {
-    // setTodoList(
-    //   todoList.filter((task) => {
-    //     return task.id != id;
-    //   })
-    // );
+  const finishTask = (taskNameToDelete: string, id: string): void => {
     dispatch(
       addTask(
         list.filter((task) => {
-          return task.id != id;
+          return task.id !== id;
         })
       )
     );
   };
 
-  const updateTask = (id: number) => {
-    var filt = todoList.filter((task) => {
+  const updateTask = (id: string) => {
+    var filt = list.filter((task) => {
       return task.id === id;
     });
 
@@ -113,10 +85,10 @@ export function TaskHead() {
             key={index}
             task={tasks}
             finishTask={finishTask}
-            idProp={updateTask}
+            // idProp={updateTask}
             // active={show}
             obj={list}
-            id={index}
+            id={tasks.id}
           />
         </div>
       </div>
@@ -127,10 +99,6 @@ export function TaskHead() {
   return (
     <div className="devborders mainTask">
       <div className="sticky">
-        <div className="d-flex flex-row flex-start align-items-center">
-          <h1 className="me-3">{smartlist}</h1>
-          <BadgeCount count={inbox} />
-        </div>
         <Input
           sub={(value: any) => setTask(value)}
           select={(value: any) => setPriority(value)}

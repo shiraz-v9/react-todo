@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import { Modal } from "react-bootstrap";
+import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
-
-import { RootState } from "../Redux/store";
-import { addTask, setID } from "../Redux/task";
+import { setID } from "../Redux/task";
 import { Checkbox } from "./checkbox";
 import { ITask } from "./interfaces";
 import { Priority } from "./priority";
@@ -11,24 +8,17 @@ import { Priority } from "./priority";
 interface props {
   obj: ITask[];
   task: ITask;
-  id: number;
-  finishTask(taskNameToDelete: string, id: number): void;
-  idProp(id: number): void;
+  id: string;
+  finishTask(taskNameToDelete: string, id: string): void;
+  // idProp(id: string): void;
 }
 
-export function TaskBody({ task, obj, finishTask, idProp, id }: props) {
-  const [show, setShow] = useState(false);
-  const [body, setbody] = useState<string>("");
-  const [taskname, settaskname] = useState<string>(task.task);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const { list, listID } = useSelector((state: RootState) => state.reduxTask);
+export function TaskBody({ task, obj, finishTask, id }: props) {
   const dispatch = useDispatch();
 
   const handleDeets = () => {
     dispatch(setID(id));
-    console.log("list ID redux ", id, taskname);
+    console.log("list ID ", id, " TASK ", task.task);
   };
   // const handleUpdate = () => {
   //   var updated: ITask[] = [
@@ -45,7 +35,22 @@ export function TaskBody({ task, obj, finishTask, idProp, id }: props) {
   //   dispatch(addTask([...list, updated]));
   // };
 
-  var m = 3;
+  // var days = format(new Date(task.deadline), "dd");
+
+  const Due = () => {
+    if (task.deadline !== "" && task.deadline !== undefined)
+      return (
+        <span>
+          in{" "}
+          {parseInt(format(new Date(task.deadline), "dd")) -
+            parseInt(format(new Date(), "dd"))}{" "}
+          days
+        </span>
+      );
+    else {
+      return <span></span>;
+    }
+  };
 
   return (
     <>
@@ -64,47 +69,13 @@ export function TaskBody({ task, obj, finishTask, idProp, id }: props) {
             <p>{task.task}</p>
           </div>
           <div className="d-flex flex-nowrap justify-content-center">
-            <p className="me-2">{task.deadline}</p>
+            <p className="me-2">
+              <Due />
+            </p>
             <Priority type={task.priority} />
           </div>
         </div>
       </div>
-
-      {/* <Modal show={show} onHide={handleClose} backdrop="true" keyboard={false}>
-        <div className="theModal">
-          <div
-            className={`m-${m} d-flex justify-content-between align-items-center`}
-          >
-            <input
-              className="modinput"
-              type="text"
-              value={taskname}
-              onChange={(e) => settaskname(e.target.value)}
-              />
-              <Priority type={task.priority} />
-          </div>
-          <div className={`m-${m} `}>
-            <textarea
-              rows={4}
-              className="modtxt"
-              placeholder="more details here"
-              onChange={(e) => {
-                {
-                  setbody(e.target.value);
-                }
-              }}
-            >
-              {task.body?.text}
-            </textarea>
-          </div>
-          <div className={`m-${m} d-flex flex-row justify-content-end`}>
-            <button onClick={handleClose}>Discard</button>
-            <button className="ms-1" onClick={handleUpdate}>
-              Save
-            </button>
-          </div>
-        </div>
-      </Modal> */}
     </>
   );
 }

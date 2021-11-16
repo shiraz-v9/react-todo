@@ -1,12 +1,16 @@
 export interface ITask {
-  id: number;
+  id: string;
   task: string;
-  created: string;
-  createdTime: string;
+  created: ITaskTime;
   body?: ITaskBody;
-  deadline?: string;
+  deadline?: Date | string;
   duration?: number;
   priority: string;
+}
+
+export interface ITaskTime {
+  Day: string;
+  Time: string;
 }
 
 export interface ITaskBody {

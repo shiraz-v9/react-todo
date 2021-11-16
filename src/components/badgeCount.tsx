@@ -13,7 +13,7 @@ function BadgeCount({ count }: prop) {
         borderRadius: "50px",
       }}
     >
-      <h3 className="mb-0">{count}</h3>
+      <h4 className="mb-0">{count}</h4>
     </div>
   );
 }

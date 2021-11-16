@@ -1,14 +1,11 @@
-import React from "react";
-import { Modal } from "react-bootstrap";
-import { JsxChild } from "typescript";
 import { Checkbox } from "./checkbox";
 import { ITask } from "./interfaces";
 import { Priority } from "./priority";
 
 interface Props {
   task: ITask;
-  finishTask(taskNameToDelete: string, id: number): void;
-  idProp(id: number): void;
+  finishTask(taskNameToDelete: string, id: string): void;
+  idProp(id: string): void;
   // runModal(task: ITask): void;
 }
 

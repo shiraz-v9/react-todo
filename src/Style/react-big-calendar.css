@@ -1,4 +1,8 @@
 @charset "UTF-8";
+:root {
+  --outer-borders: #dadce0;
+  --inner-borders: #dadce0;
+}
 
 .rbc-btn {
   color: inherit;
@@ -71,11 +75,11 @@ button.rbc-input::-moz-focus-inner {
   font-weight: bold;
   font-size: 90%;
   min-height: 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--inner-borders);
 }
-.rbc-header + .rbc-header {
+/* .rbc-header + .rbc-header {
   border-left: 1px solid #ddd;
-}
+} */
 .rbc-rtl .rbc-header + .rbc-header {
   border-left-width: 0;
   border-right: 1px solid #ddd;
@@ -278,14 +282,14 @@ button.rbc-input::-moz-focus-inner {
   background-color: rgba(255, 255, 255, 0.3);
   z-index: 4;
   font-weight: bold;
-  font-size: 85%;
+  font-size: 80%;
   height: auto;
   line-height: normal;
 }
 
 .rbc-month-view {
   position: relative;
-  border: 1px solid #ddd;
+  border: 1px solid var(--outer-borders);
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
@@ -310,14 +314,15 @@ button.rbc-input::-moz-focus-inner {
   height: 100%;
 }
 .rbc-month-row + .rbc-month-row {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--inner-borders);
 }
 
 .rbc-date-cell {
   flex: 1 1 0;
   min-width: 0;
-  padding-right: 5px;
-  text-align: right;
+  /* padding-top: 5px; */
+  text-align: center;
+  /* font-style: italic; */
 }
 .rbc-date-cell.rbc-now {
   font-weight: bold;
@@ -340,11 +345,11 @@ button.rbc-input::-moz-focus-inner {
   flex: 1 0 0%;
 }
 .rbc-day-bg + .rbc-day-bg {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid var(--inner-borders);
 }
 .rbc-rtl .rbc-day-bg + .rbc-day-bg {
   border-left-width: 0;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid var(--inner-borders);
 }
 
 .rbc-overlay {

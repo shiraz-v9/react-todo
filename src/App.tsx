@@ -2,7 +2,7 @@ import { TaskHead } from "./components/taskHeader";
 import IconBar from "./components/iconbar";
 import { Sidebar } from "./components/Sidebar";
 import { Taskdeets } from "./components/Taskdeets";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyCalendar from "./components/calendar";
 import Settings from "./components/settings";
 
@@ -11,29 +11,23 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <div className="mainContainer">
-            <div className="container">
-              <IconBar />
-              <Sidebar />
-              <TaskHead />
-              <Taskdeets />
-            </div>
+          <div className="grid">
+            <IconBar />
+            <Sidebar />
+            <TaskHead />
+            <Taskdeets />
           </div>
         </Route>
         <Route exact path="/calendar">
-          <div className="mainContainer">
-            <div className="container">
-              <IconBar />
-              <MyCalendar />
-            </div>
+          <div className="gridCalendar">
+            <IconBar />
+            <MyCalendar />
           </div>
         </Route>
         <Route exact path="/settings">
-          <div className="mainContainer">
-            <div className="container">
-              <IconBar />
-              <Settings />
-            </div>
+          <div className="gridSettings">
+            <IconBar />
+            <Settings />
           </div>
         </Route>
         <Route

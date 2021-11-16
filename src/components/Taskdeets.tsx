@@ -1,22 +1,29 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux/store";
-import { ITask } from "./interfaces";
+import { ITask, ITaskTime } from "./interfaces";
 
 export function Taskdeets() {
-  const [task, setTask] = useState<string>();
+  const [task, setTask] = useState<any>("");
   const [body, setBody] = useState<string>();
+  const [time, setTime] = useState<ITaskTime>();
   const { listID, list } = useSelector((state: RootState) => state.reduxTask);
   const dispatch = useDispatch();
 
   useEffect(() => {
     //
-    if (list != undefined && list != null) {
-      console.log(listID);
-      console.log(list[listID]);
-      if (list[listID]?.task !== null && list[listID]?.task !== undefined) {
-        setTask(list[listID]?.task);
-        setBody(list[listID]?.body?.text);
+    if (list !== undefined && list !== []) {
+      var filteredList: ITask[] = list.filter((x) => {
+        return x.id === listID;
+      });
+      console.log("task Object ", filteredList);
+      if (listID !== null && listID !== undefined) {
+        setTask(filteredList[0].task);
+        setBody(filteredList[0]?.body?.text);
+        setTime({
+          Day: filteredList[0].created.Day,
+          Time: filteredList[0].created.Time,
+        });
       } else {
         setTask("click on a task");
       }
@@ -30,8 +37,8 @@ export function Taskdeets() {
 
   return (
     <div className="devborders deets">
-      <h3 className="sticky title mt-2">{task}</h3>
-      <span>{list[listID] ? list[listID].created : ""}</span>
+      <h3 className="sticky title">{task}</h3>
+      <span>{time ? `${time?.Day} - ${time?.Time}` : ""}</span>
       <textarea
         className="modtxt"
         placeholder="add description to task"
