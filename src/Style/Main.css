@@ -1,13 +1,13 @@
 :root {
-  --background: #ffffff;
-  --hoverInput: #c5c5c5;
-  --cards: #ffffff;
+  --background: rgb(45, 45, 45);
+  --hoverInput: rgb(57, 57, 57);
+  --cards: var(--background);
   --cardOpacity: #ffffff90;
   --button: #3e90cc;
   --btncolor: #ebf2fa;
   --radius: 10px;
   --hover: var(--hoverInput);
-  --font: #000000;
+  --font: rgb(206, 209, 208);
   --red: #ef233c;
   --inputColor: var(--hoverInput);
   --shadows: rgb(201, 201, 201);
@@ -39,9 +39,22 @@ body {
   /* grid-auto-rows: 100%; */
 }
 
-.gridCalendar {
+.datePriority {
   display: flex;
-  flex-direction: row;
+  flex-flow: row nowrap;
+  justify-content: end;
+  align-content: baseline;
+}
+
+.gridCalendar {
+  /* display: flex;
+  flex-direction: row; */
+  display: grid;
+  grid-template-columns: 1fr 12fr;
+}
+.calendarWrapper {
+  width: 90vw;
+  height: 100vh;
 }
 
 .calendarPage {
@@ -114,6 +127,10 @@ option {
   border: none;
 }
 
+.hidden {
+  display: none;
+}
+
 .btntt:hover {
   cursor: default;
   background-color: var(--button);
@@ -141,7 +158,7 @@ textarea {
 }
 
 input {
-  /* width: 100%; */
+  width: 100%;
   height: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -150,6 +167,27 @@ input {
   background-color: var(--inputColor);
   border: none;
   outline: none;
+}
+.react-datepicker__input-container {
+  width: 80px;
+}
+
+.react-datepicker-ignore-onclickoutside {
+  background-color: var(--button);
+  cursor: pointer;
+}
+
+.react-datepicker__navigation {
+  background-color: unset !important;
+}
+
+.react-datepicker__day--today {
+  background-color: var(--red);
+  border-radius: var(--radius);
+}
+.react-datepicker__month-container {
+  font-family: "Montserrat", sans-serif !important;
+  color: var(--font) !important;
 }
 
 .inputBorder {
@@ -162,19 +200,22 @@ input {
   position: sticky;
   top: 0;
   background-color: var(--cards);
-  background-color: var(--cardOpacity);
 }
 
 .eachTask {
   padding: 5px;
 }
 
+.littleGap {
+  display: flex;
+  gap: 5px;
+}
+
 .taskRow {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
-  align-items: baseline;
+  align-content: baseline;
 }
 
 .hoverable:hover {

@@ -5,6 +5,7 @@ import { Taskdeets } from "./components/Taskdeets";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MyCalendar from "./components/calendar";
 import Settings from "./components/settings";
+import About from "./components/about";
 
 function App() {
   return (
@@ -22,6 +23,12 @@ function App() {
           <div className="gridCalendar">
             <IconBar />
             <MyCalendar />
+          </div>
+        </Route>
+        <Route exact path="/about">
+          <div className="gridSettings">
+            <IconBar />
+            <About />
           </div>
         </Route>
         <Route exact path="/settings">

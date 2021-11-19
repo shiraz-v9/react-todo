@@ -1,52 +1,76 @@
 import { format } from "date-fns";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 
 export function Input(props: any) {
-  var priority = ["none", "low", "medium", "high"];
+  const [priority, setPriority] = useState<string>("none");
   const [input, setInput] = useState<string>("");
   const [picker, setPicker] = useState<Date>(new Date());
-  const [fired, setfired] = useState<number>(0);
-  const [select, setSelect] = useState<string>(priority[fired]);
+  const [fired, setFired] = useState<number>(0);
   const [date, setDate] = useState<string>("");
   const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelect(event.target.value);
+    setPriority(event.target.value);
   };
+  const [display, setDisplay] = useState<string>("date");
 
   const handleSubmission = (event: any) => {
     event.preventDefault();
     props.sub(input);
-    props.select(select);
+    props.select(priority);
     props.date(date);
     setInput("");
-    // setDate("");
+    setDisplay("date");
+    setPriority("none");
+    setFired(0);
   };
 
-  // const arrowzino = (e: any) => {
-  //   if (e.keyCode === 38 && fired >= 0 && fired <= 2) {
-  //     setfired(fired + 1);
-  //     console.log("⬇", fired);
-  //     // setSelect(priority[fired]);
-  //   } else if (e.keyCode === 40 && fired >= 0 && fired <= 2) {
-  //     setfired(fired - 1);
-  //     console.log("⬆", fired);
-  //   }
-  //   setSelect(priority[fired]);
-  //   console.log(priority[fired]);
-  // };
+  function keycodePriority() {
+    if (fired === 0) {
+      setPriority("none");
+    }
+    if (fired === 1) {
+      setPriority("low");
+    }
+    if (fired === 2) {
+      setPriority("medium");
+    }
+    if (fired === 3) {
+      setPriority("high");
+    }
+  }
+
+  const arrowzino = (e: any) => {
+    if (fired >= 0 && fired <= 3) {
+      if (e.keyCode === 38) {
+        setFired(fired + 1);
+        keycodePriority();
+        console.log("UP ", fired);
+      }
+      if (e.keyCode === 40) {
+        setFired(fired - 1);
+        keycodePriority();
+        console.log("DOWN ", fired);
+      }
+    } else {
+      console.log("OUT OF RANGE ", fired);
+      fired > 3 ? setFired(fired - 1) : setFired(fired + 1);
+    }
+  };
+
+  useEffect(() => {
+    keycodePriority();
+  }, [arrowzino]);
 
   return (
     <div className="inputBorder">
       <div className="w-100">
-        <form onSubmit={handleSubmission}>
-          <div className="taskRow">
+        <form onSubmit={handleSubmission} className="formInput">
+          <div className="taskRow inp mx-2">
             <input
-              className="ms-2"
               type="text"
               value={input}
-              // onKeyDown={arrowzino}
+              onKeyDown={arrowzino}
               onChange={(event) => {
                 {
                   setInput(event.target.value);
@@ -61,24 +85,26 @@ export function Input(props: any) {
               onChange={(event) => setDate(event.target.value)}
               name="date-picker"
             /> */}
-            <div className="d-flex justify-content-end align-items-center">
+            <div className="datePriority">
               <DatePicker
+                value={display}
                 selected={picker}
                 onChange={(date: any) => {
                   var formatted = format(date, "yyyy MM dd");
+                  setDisplay(format(date, "dd MMM"));
                   setDate(formatted);
-                  setPicker(date);
+                  setPicker(new Date());
                 }}
               />
 
               <select name="select" onChange={handleSelect}>
-                <option value="none">none</option>
+                <option value="none">{priority}</option>
                 <option value="low">low</option>
                 <option value="medium">medium</option>
                 <option value="high">high</option>
               </select>
-              {/* <p className="mx-2">{select}</p> */}
-              <button className="mx-2 btntt" type="submit">
+
+              <button className="mx-2 btntt hidden" type="submit">
                 add
               </button>
             </div>

@@ -1,0 +1,64 @@
+@media only screen and (max-width: 800px) {
+  /* :root {
+    --background: #ffffff;
+    --hoverInput: #c5c5c5;
+    --cards: #ffffff;
+    --cardOpacity: #ffffff90;
+    --button: #3e90cc;
+    --btncolor: #ebf2fa;
+    --radius: 10px;
+    --hover: var(--hoverInput);
+    --font: #000000;
+    --red: #ef233c;
+    --inputColor: var(--hoverInput);
+    --shadows: rgb(201, 201, 201);
+  } */
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr 10fr;
+    grid-template-rows: none;
+    width: 100vw;
+    height: 100vh;
+  }
+  .deets {
+    display: none;
+  }
+
+  .calendarWrapper {
+    width: 90vw;
+    height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .sidebar {
+    display: none;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-template-rows: none;
+    width: 100vw;
+    height: 100vh;
+  }
+  .calendarWrapper {
+    width: 85vw;
+    height: 100vh;
+  }
+  /* .react-datepicker__input-container {
+    display: none;
+  } */
+  .datePriority {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: end;
+    align-content: baseline;
+  }
+  .taskRow.inp {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: baseline;
+  }
+}

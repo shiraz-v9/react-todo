@@ -5,6 +5,7 @@ import { store } from "./Redux/store";
 import { Provider } from "react-redux";
 import "./Style/Main.css";
 import "./Style/rbc-colors.css";
+import "./Style/mediaQueries.css";
 
 ReactDOM.render(
   // <React.StrictMode>

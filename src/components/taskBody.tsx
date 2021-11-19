@@ -38,16 +38,32 @@ export function TaskBody({ task, obj, finishTask, id }: props) {
   // var days = format(new Date(task.deadline), "dd");
 
   const Due = () => {
-    if (task.deadline !== "" && task.deadline !== undefined)
+    if (task.deadline !== "" && task.deadline !== undefined) {
+      var daysLeft: number =
+        parseInt(format(new Date(task.deadline), "dd")) -
+        parseInt(format(new Date(), "dd"));
+      var day: string = "";
+      var display: Boolean | undefined = undefined;
+      if (daysLeft > 1) {
+        day = " days";
+        display = true;
+      }
+      if (daysLeft === 0) {
+        day = " today";
+        display = false;
+      }
+      if (daysLeft === 1) {
+        day = " tomorrow";
+        display = false;
+      }
+
       return (
-        <span>
-          in{" "}
-          {parseInt(format(new Date(task.deadline), "dd")) -
-            parseInt(format(new Date(), "dd"))}{" "}
-          days
-        </span>
+        <div className="littleGap">
+          <p>{display === true ? daysLeft : ""}</p>
+          <p>{day}</p>
+        </div>
       );
-    else {
+    } else {
       return <span></span>;
     }
   };
@@ -56,7 +72,7 @@ export function TaskBody({ task, obj, finishTask, id }: props) {
     <>
       <div className="mt-2 taskRow" onClick={handleDeets}>
         <div className="w-100 mx-2 taskRow">
-          <div className="d-flex flex-nowrap align-items-start">
+          <div className="d-flex flex-row flex-nowrap">
             <div
               className="checkBtn me-2"
               onClick={() => {
@@ -68,10 +84,8 @@ export function TaskBody({ task, obj, finishTask, id }: props) {
 
             <p>{task.task}</p>
           </div>
-          <div className="d-flex flex-nowrap justify-content-center">
-            <p className="me-2">
-              <Due />
-            </p>
+          <div className="d-flex flex-row flex-nowrap align-items-center littleGap">
+            <Due />
             <Priority type={task.priority} />
           </div>
         </div>

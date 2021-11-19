@@ -39,19 +39,21 @@ function MyCalendar() {
   }
 
   return (
-    <Calendar
-      // view="month"
-      localizer={localizer}
-      events={events}
-      startAccessor="start"
-      endAccessor="end"
-      // onSelectEvent={() => console.log("hello world")}
-      style={{
-        padding: "20px",
-        width: "95vw",
-        height: "100vh",
-      }}
-    />
+    <div className="calendarWrapper">
+      <Calendar
+        // view="month"
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        // onSelectEvent={() => console.log("hello world")}
+        style={{
+          padding: "20px",
+          width: "100%",
+          height: "100%",
+        }}
+      />
+    </div>
   );
 }
 

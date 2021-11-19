@@ -38,7 +38,7 @@ export function Taskdeets() {
   return (
     <div className="devborders deets">
       <h3 className="sticky title">{task}</h3>
-      <span>{time ? `${time?.Day} - ${time?.Time}` : ""}</span>
+      <p>{time ? `${time?.Day} - ${time?.Time}` : ""}</p>
       <textarea
         className="modtxt"
         placeholder="add description to task"
