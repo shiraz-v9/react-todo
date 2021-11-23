@@ -2,14 +2,19 @@ import { TaskHead } from "./components/taskHeader";
 import IconBar from "./components/iconbar";
 import { Sidebar } from "./components/Sidebar";
 import { Taskdeets } from "./components/Taskdeets";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  HashRouter,
+} from "react-router-dom";
 import MyCalendar from "./components/calendar";
 import Settings from "./components/settings";
 import About from "./components/about";
 
 function App() {
   return (
-    <Router>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route exact path="/">
           <div className="grid">
@@ -49,7 +54,7 @@ function App() {
           )}
         ></Route>
       </Switch>
-    </Router>
+    </HashRouter>
   );
 }
 

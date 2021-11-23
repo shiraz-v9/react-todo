@@ -37,15 +37,19 @@ function MyCalendar() {
       ];
     });
   }
+  const toolz = () => {
+    return <h1>hello</h1>;
+  };
 
   return (
     <div className="calendarWrapper">
       <Calendar
-        // view="month"
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
+        views={["month", "agenda"]}
+        // components={{ toolbar: toolz }}
         // onSelectEvent={() => console.log("hello world")}
         style={{
           padding: "20px",

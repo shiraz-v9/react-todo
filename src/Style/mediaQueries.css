@@ -1,19 +1,4 @@
 @media only screen and (max-width: 800px) {
-  /* :root {
-    --background: #ffffff;
-    --hoverInput: #c5c5c5;
-    --cards: #ffffff;
-    --cardOpacity: #ffffff90;
-    --button: #3e90cc;
-    --btncolor: #ebf2fa;
-    --radius: 10px;
-    --hover: var(--hoverInput);
-    --font: #000000;
-    --red: #ef233c;
-    --inputColor: var(--hoverInput);
-    --shadows: rgb(201, 201, 201);
-  } */
-
   .grid {
     display: grid;
     grid-template-columns: 1fr 4fr 10fr;
@@ -35,6 +20,9 @@
   .sidebar {
     display: none;
   }
+  .hidden {
+    display: block;
+  }
   .grid {
     display: grid;
     grid-template-columns: 1fr 10fr;
@@ -42,9 +30,10 @@
     width: 100vw;
     height: 100vh;
   }
-  .calendarWrapper {
-    width: 85vw;
-    height: 100vh;
+
+  .gridCalendar {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
   }
   /* .react-datepicker__input-container {
     display: none;
@@ -60,5 +49,19 @@
     flex-flow: row wrap;
     justify-content: center;
     align-content: baseline;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .gridCalendar {
+    display: grid;
+    grid-template-columns: 1fr 30fr;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr 14fr 7fr;
+    grid-template-rows: none;
+    width: 100vw;
+    height: 100vh;
   }
 }

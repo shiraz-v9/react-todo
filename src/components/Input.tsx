@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { useState, ChangeEvent, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { BadgeList } from "./Sidebar";
 
 export function Input(props: any) {
   const [priority, setPriority] = useState<string>("none");
@@ -63,54 +64,61 @@ export function Input(props: any) {
   }, [arrowzino]);
 
   return (
-    <div className="inputBorder">
-      <div className="w-100">
-        <form onSubmit={handleSubmission} className="formInput">
-          <div className="taskRow inp mx-2">
-            <input
-              type="text"
-              value={input}
-              onKeyDown={arrowzino}
-              onChange={(event) => {
-                {
-                  setInput(event.target.value);
-                }
-              }}
-              placeholder="add a task..."
-            />
-            {/* <input
+    <>
+      <div className="hidden">
+        <BadgeList />
+      </div>
+
+      <div className="inputBorder">
+        <div className="w-100">
+          <form onSubmit={handleSubmission} className="formInput">
+            <div className="taskRow inp mx-2">
+              <input
+                type="text"
+                value={input}
+                onKeyDown={arrowzino}
+                onChange={(event) => {
+                  {
+                    setInput(event.target.value);
+                  }
+                }}
+                placeholder="add a task..."
+              />
+              {/* <input
               type="date"
               className="date-picker"
               value={date}
               onChange={(event) => setDate(event.target.value)}
               name="date-picker"
             /> */}
-            <div className="datePriority">
-              <DatePicker
-                value={display}
-                selected={picker}
-                onChange={(date: any) => {
-                  var formatted = format(date, "yyyy MM dd");
-                  setDisplay(format(date, "dd MMM"));
-                  setDate(formatted);
-                  setPicker(new Date());
-                }}
-              />
+              <div className="datePriority">
+                <DatePicker
+                  value={display}
+                  selected={picker}
+                  onChange={(date: any) => {
+                    var formatted = format(date, "yyyy MM dd");
+                    setDisplay(format(date, "dd MMM"));
+                    setDate(formatted);
+                    setPicker(new Date());
+                  }}
+                />
 
-              <select name="select" onChange={handleSelect}>
+                {/* <select name="select" onChange={handleSelect}>
                 <option value="none">{priority}</option>
                 <option value="low">low</option>
                 <option value="medium">medium</option>
                 <option value="high">high</option>
-              </select>
+              </select> */}
+                <p>{priority}</p>
 
-              <button className="mx-2 btntt hidden" type="submit">
-                add
-              </button>
+                <button className="my-auto btntt" type="submit">
+                  add
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,7 +1,4 @@
 :root {
-  --button: #3e90cc;
-  --btncolor: #ebf2fa;
-  --accent: #3e90cc;
   --Cfont: var(--font);
   --today: rgba(62, 144, 204, 0.4);
   --event: rgb(255, 73, 73);

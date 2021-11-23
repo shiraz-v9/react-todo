@@ -8,6 +8,7 @@ import { ITask } from "./interfaces";
 import { TaskBody } from "./taskBody";
 import { nanoid } from "nanoid";
 import { format } from "date-fns";
+import { setID } from "../Redux/task";
 
 export function TaskHead() {
   // const [todoList, setTodoList] = useState<ITask[]>([]);
@@ -51,7 +52,11 @@ export function TaskHead() {
     dispatch(
       taskDeadline(
         list.filter((task) => {
-          return task.deadline !== undefined && task.deadline !== null;
+          return (
+            task.deadline !== undefined &&
+            task.deadline !== null &&
+            task.deadline !== ""
+          );
         })
       )
     );
@@ -65,6 +70,7 @@ export function TaskHead() {
         })
       )
     );
+    dispatch(setID(undefined));
   };
 
   const updateTask = (id: string) => {

@@ -18,7 +18,7 @@ export function TaskBody({ task, obj, finishTask, id }: props) {
 
   const handleDeets = () => {
     dispatch(setID(id));
-    console.log("list ID ", id, " TASK ", task.task);
+    console.log("TASK obj ", task);
   };
   // const handleUpdate = () => {
   //   var updated: ITask[] = [
