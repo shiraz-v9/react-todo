@@ -52,8 +52,8 @@ function MyCalendar() {
         // components={{ toolbar: toolz }}
         // onSelectEvent={() => console.log("hello world")}
         style={{
-          padding: "20px",
-          width: "100%",
+          // padding: "20px",
+          // width: "100%",
           height: "100%",
         }}
       />

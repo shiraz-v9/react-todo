@@ -9,6 +9,7 @@ export function Taskdeets() {
   const [body, setBody] = useState<string>();
   const [time, setTime] = useState<ITaskTime>();
   const { listID, list } = useSelector((state: RootState) => state.reduxTask);
+  // const { inbox } = useSelector((state: RootState) => state.counter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +28,6 @@ export function Taskdeets() {
         filteredList !== [] &&
         filteredList !== null
       ) {
-        console.log("task Object ", filteredList);
         setTask(filteredList[0]?.task);
         setBody(filteredList[0]?.body?.text);
         setTime({
@@ -36,7 +36,7 @@ export function Taskdeets() {
         });
       }
     } else {
-      setTask("click on a task");
+      setTask("all done");
     }
   }, [listID]);
 
@@ -68,6 +68,7 @@ export function Taskdeets() {
       deadline: filteredList[0].deadline,
       // duration: filteredList[0].duration,
       priority: filteredList[0].priority,
+      completed: filteredList[0].completed,
     };
 
     console.log("body received filtered list ".toUpperCase(), untouchedList);
@@ -83,13 +84,15 @@ export function Taskdeets() {
   return (
     <div className="devborders deets">
       <h3 className="sticky title">{task}</h3>
-      <p>{time ? `${time?.Day} - ${time?.Time}` : ""}</p>
-      <textarea
-        className="modtxt"
-        placeholder="add description to task"
-        value={body}
-        onChange={handleDetails}
-      ></textarea>
+      <div>
+        <p>{time ? `${time?.Day} - ${time?.Time}` : ""}</p>
+        <textarea
+          className="modtxt"
+          placeholder="add description to task"
+          value={body}
+          onChange={handleDetails}
+        ></textarea>
+      </div>
     </div>
   );
 }

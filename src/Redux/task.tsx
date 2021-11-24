@@ -5,6 +5,7 @@ export const taskSlice = createSlice({
   name: "reduxTask",
   initialState: {
     list: [] as ITask[],
+    completedlist: [] as ITask[],
     smartlist: "inbox",
     deadlines: [] as IDeadline[],
     events: [],
@@ -13,6 +14,9 @@ export const taskSlice = createSlice({
   reducers: {
     addTask: (state, action) => {
       state.list = action.payload;
+    },
+    completeTask: (state, action) => {
+      state.completedlist = action.payload;
     },
     setInbox: (state) => {
       state.smartlist = "inbox";
@@ -41,6 +45,7 @@ export const taskSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
   addTask,
+  completeTask,
   setInbox,
   setToday,
   setTomorrow,

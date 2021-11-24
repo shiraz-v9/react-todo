@@ -1,13 +1,16 @@
 @media only screen and (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+  .hidden {
+    display: block;
+  }
   .grid {
     display: grid;
-    grid-template-columns: 1fr 4fr 10fr;
+    grid-template-columns: 1fr 7fr 5fr;
     grid-template-rows: none;
     width: 100vw;
     height: 100vh;
-  }
-  .deets {
-    display: none;
   }
 
   .calendarWrapper {
@@ -23,6 +26,9 @@
   .hidden {
     display: block;
   }
+  .deets {
+    display: none;
+  }
   .grid {
     display: grid;
     grid-template-columns: 1fr 10fr;
@@ -33,7 +39,13 @@
 
   .gridCalendar {
     display: grid;
-    grid-template-columns: 1fr 8fr;
+    grid-template-columns: 0fr 5fr;
+
+    width: 100vw;
+    height: 100vh;
+  }
+  .rbc-btn-group {
+    display: none;
   }
   /* .react-datepicker__input-container {
     display: none;

@@ -6,6 +6,7 @@ export interface ITask {
   deadline?: Date | string;
   duration?: number;
   priority: string;
+  completed: boolean;
 }
 
 export interface ITaskTime {

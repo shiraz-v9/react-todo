@@ -51,10 +51,16 @@ body {
   flex-direction: row; */
   display: grid;
   grid-template-columns: 1fr 20fr;
-}
-.calendarWrapper {
-  width: 100vw - 60px;
+  width: 100vw;
   height: 100vh;
+}
+/* .calendarWrapper {
+  /* width: 100vw; 
+} 
+*/
+
+.rbc-toolbar {
+  padding: 10px;
 }
 
 .calendarPage {
